@@ -1,0 +1,104 @@
+{% include 'staff_header.html' %}
+<center>
+ 
+<div class="top">
+
+    <h3>Item Details</Details> </h1>
+
+           
+    <form  method="POST" style="width: 450px;" enctype="multipart/form-data">
+            
+           
+            
+            <table class="table" style="width:450px;">
+           
+           <tr>
+            <th>Category</th>
+                           
+          
+     <td>
+            <select name="category" class="form-control">
+               <option value="{% if data['iup'] %}{{data['iup'][0]['cat_id']}}{% endif %}">{% if data['iup'] %}{{data['iup'][0]['Name']}} {% else %}---select--- {% endif %}</option>
+                {% for i in data['category'] %}
+                <option  value="{{i['cat_id']}}">{{i['Name']}}</option>
+                {% endfor %}
+            </select>
+        </td>
+    </tr>
+      
+        <tr>
+            <th class="name">Name</th>
+            <td><input class="form-control" type="text" name="Iname"  required="" value="{% if data['iup'] %}{{data['iup'][0]['Iname']}}{% endif %}"></td>
+        </tr>
+
+ 
+        <tr>
+            <th class="name">Description</th>
+            <td><input class="form-control" type="text" name="Description"  required=""  value="{% if data['iup'] %}{{data['iup'][0]['Description']}}{% endif %}"></td>
+        </tr>
+      
+     
+        <tr>
+            <th class="name">Image</th>
+            <td><input class="form-control" type="file" name="Image"  {% if data['iup'] %} {% else %} required {% endif %} ></td>
+        </tr>
+    
+        <tr>
+            <th class="name">Price</th>
+            <td><input class="form-control" type="text" name="Price"  required="" value="{% if data['iup'] %}{{data['iup'][0]['Price']}}{% endif %}"></td>
+        </tr>
+ 
+
+      <tr>
+        <td align="center" colspan="2"><input class="btn btn-success" type="submit" {% if data['iup'] %} name="edit" value="Update" {% else %}  value="Submit" name="submit" {% endif %}></td>
+    </tr>
+    </table>
+</div>
+</center>
+    </form>
+
+
+<h1 style="margin-top: 5px;color: black;" >View Item</h1>
+    <table class="table table-striped">
+        <tr>
+            <th>Item Name</th>
+            <th>Category Name</th>
+            <th>Description</th>
+            <th>Image</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th>Update</th>
+            <th>Action</th>
+            
+
+            <th></th>
+        </tr>
+        {% for r in data['view'] %}
+        <tr>
+            <td>{{r['Iname']}}</td>
+            <td>{{r['Name']}}</td>
+            <td>{{r['Description']}}</td>
+            <td class="name"><a href="/{{ r['Image'] }}"><img src="/{{ r['Image'] }}" height="100" width="100"></a></td>
+            <td>{{r['Price']}}</td>
+            <td>{{r['Status']}}</td>
+            
+            <td><a class="btn btn-success" href="?action=update&sid={{ r['item_id'] }}">Update</a></td>  
+            {% if r['Status'] == '1' %}
+            <td><a href="?action=inactive&sid={{r['item_id']}}"  class="btn btn-danger">Inactive</a></td>
+            {% elif r['Status'] =='0' %}
+            <td><a href="?action=active&sid={{r['item_id']}}"  class="btn btn-primary">Active</a></td>
+            {% endif %}
+
+            
+
+
+        </tr>
+        {% endfor %}
+        
+    </table>
+
+
+
+    </form>
+    
+        {% include 'footer.html' %}

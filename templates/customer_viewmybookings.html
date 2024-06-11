@@ -1,0 +1,60 @@
+{% include 'cusheader.html'%}
+
+<h3 style="margin-top: 100px;">View My Bookings</h3>
+
+
+
+<table class="table table-striped">
+	<form method="post">
+		<table class="table" style="width: 1000px;color: black">
+			<tr>
+				 
+        <th>Product</th>
+        <th>Total Price</th>
+        <th>Quantity</th>
+
+        <th>Order Date</th>
+        <th>Order Status</th>
+
+				
+				
+		  </tr>
+    {% for row in data['view'] %}
+    <tr>
+       
+        <td><img src="/{{row['Image']}}" alt="" style="width: 100px; height: 100px;"><br>Product Name:{{ row['Iname'] }}<br> {{row['Description']}}</td>
+        <td>{{ row['total_price'] }}</td>
+        <td>{{ row['qty'] }}</td>
+    
+        <td>{{ row['date'] }}</td>
+        <td>{{ row['status'] }}</td>
+        
+        <!-- <td><a href="adminviewdetails?omid={{row['order_master_id']}}" class="btn btn-info">View Details</a></td> -->
+        <!-- <td><a href="adminviewpayment?omid={{row['order_master_id']}}" class="btn btn-success">View Payment</a></td> -->
+  
+
+
+  
+    				
+    		
+    	</tr>
+    	{% endfor %}
+
+
+
+    	
+
+   
+		</table>
+	</form>
+
+
+</center>
+
+
+
+
+</div></section>
+
+
+{% include 'footer.html'%}

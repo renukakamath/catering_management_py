@@ -1,0 +1,86 @@
+{% include 'staff_header.html' %}
+    
+    <form action="" method="POST">
+        <center>
+
+            
+            {% if data['category'] %}
+            <div class="top">
+        
+                <h3>Update Category</h1>
+                
+             <table class="table" style="width: 500px;">
+                 <tr>
+                     <center>
+                     <th>Name </th>
+                     <td><input type="text" value="{{ data['category'][0]['Name'] }}"class="form-control" name="Name"></td>
+                 </tr>
+                 <tr>
+                     <th>Description</th>
+                     <td><textarea name="Description"value="{{ data['category'][0]['Description'] }}" class="form-control"id="" cols="40" rows="4"></textarea></td>
+                 </tr>
+ 
+     
+                 <tr>
+                     <span style="padding-left: 200px;">
+                     <td align="center" colspan="2"><input type="submit" value="Update" class="btn btn-success" name="update"></td></span>
+                 </tr>
+             </table>
+     
+            </center>
+         
+        </div>
+         </form>
+         {% else %}
+         <center>
+
+         <div class="top">
+             <h3>Add Category </h1>
+
+       
+
+        <table class="table" style="width: 500px;">
+            <tr>
+                <center>
+                <th>Name </th>
+                <td><input type="text" class="form-control" name="Name"></td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td><textarea name="Description" class="form-control"id="" cols="40" rows="4"></textarea></td>
+            </tr>
+      
+
+            <tr>
+                <span style="padding-left: 200px;">
+                <td align="center" colspan="2"><input type="submit" value="Submit" class="btn btn-success" name="submit"></td></span>
+            </tr>
+        </table>
+    </div>
+</center>
+  
+</form>
+{% endif %}
+<h4>View Category</h4>
+    <table class="table table-striped">
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Update</th>
+            
+        </tr>
+        {% for r in data['view'] %}
+        <tr>
+            <td>{{r['Name']}}</td>
+            <td>{{r['Description']}}</td>
+            <td><a class="btn btn-success" href="?action=update&cid={{ r['cat_id'] }}">update</a></td>  
+           
+
+
+        </tr>
+        {% endfor %}
+        </table>
+
+
+    
+    {% include 'footer.html' %}

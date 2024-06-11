@@ -1,0 +1,108 @@
+{% include 'cusheader.html' %}
+<form action="" method="POST" style="display: flex;justify-content: center;align-items: center;height: 100vh;">
+        <center>
+       
+  <div class="top">
+    
+ 
+          
+    
+            <h1>ADD TO CART</h1>
+            
+         <table class="table" style="width: 500px;">
+             <tr>
+                 <center>
+                 <th> Item</th>
+                 <td><input type="text" value="{{data['name']}}" readonly="" class="form-control" name="item"></td>
+             </tr>
+
+
+             <tr>
+                 <th>Event</th>
+                 <td><select class="form-control" name="event">
+                     <option>--Select---</option>
+                     {% for row in data['evet']%}
+                     <option value="{{row['event_id']}}">{{row['Name']}}</option>
+                     {% endfor %}
+                 </select></td>
+             </tr>
+            </tr>
+            <th>Price</th>
+                  <td><input type="text" name="price"  id="Price" readonly class="form-control" value="{{data['price']}}"  ></td>
+              </tr>
+
+              <th>Quantity</th>
+            <td><input oninput="changeQty()"  type="text" name="qty" id="qty" class="form-control"  value=""></td>
+        </tr>
+        <th>Total Amount</th>
+        <td><input type="text" name="total_amt"  readonly="" id="total_amt" class="form-control" value="" ></td>
+    </tr>
+             <tr>
+                 <span style="padding-left: 200px;">
+                 <td align="center" colspan="2"><input type="submit" value="submit" class="btn btn-success" name="add"></td></span>
+             </tr>
+         </table>
+   
+   
+   </div>
+
+
+        
+</center>
+     </form>
+
+
+{% include 'footer.html' %}
+
+
+
+
+     <script>
+        function changeQty(){
+            document.getElementById("total_amt").value= document.getElementById("qty").value* document.getElementById("Price").value
+       }
+    </script>
+
+    <style>
+
+*{
+        margin: 0px;
+        padding: 0px;
+      }
+        .lg-main{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 0px;
+            margin-top: 0px;
+
+        }
+        h1{
+           text-align: center;
+           padding-top: 20px;
+           color:
+        black;
+         font-family:Cambria;
+        }
+        .lg-2nd{
+            margin-bottom: 200px;
+            margin-top: 120px;
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+            border-radius: 30px;
+            height: 320px;
+            background-color: rgba(0, 0, 0, 0.09);
+        }
+        body{
+        background-repeat: no-repeat;
+        background-position: bottom 0px right 0px;
+        background-size: cover;
+        height:50vh;
+    }
+    header{
+        background:black;
+    }
+
+    </style>
+    
+    
+    

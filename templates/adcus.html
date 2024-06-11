@@ -1,0 +1,60 @@
+{% include 'adheader.html' %}
+<div style="width: 100%;height: 100px;background: black;"></div>
+<h1>Customer Details</h1>
+    <table class="table table-striped">
+        <tr>
+            <th>Email</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>PhoneNo</th>
+            <th>Housename</th>
+            <th>State</th>
+            <th>District</th>
+            <th>Pincode</th>
+            <th>Status</th>
+            <th>Action</th>
+
+            <th></th>
+        </tr>
+        {% for r in data['view'] %}
+        <tr>
+            <td>{{r['Email']}}</td>
+            <td>{{r['Firstname']}}</td>
+            <td>{{r['Lastname']}}</td>
+            <td>{{r['Phone_number']}}</td>
+            <td>{{r['House_name']}}</td>
+            <td>{{r['State']}}</td>
+            <td>{{r['District']}}</td>
+            <td>{{r['Pincode']}}</td>
+            <td>{{r['Status']}}</td>
+        {% if r['Status'] == 1 %}
+        <td><a href="?action=inactive&cid={{r['cus_id']}}"  class="btn btn-danger">Inactive</a></td>
+        {% else %}
+        <td><a href="?action=active&cid={{r['cus_id']}}"  class="btn btn-primary">Active</a></td>
+
+        {% endif %}
+            
+
+
+        </tr>
+        {% endfor %}
+        <td align="right" colspan="10" ><button onclick="print()" class="btn btn-success" >Print</button></td>
+    </table>
+    <style>
+        h1{
+           text-align: center;
+           padding-top: 20px;
+           color:
+         #FF5733;
+         font-family:Merriweather;
+        }
+
+    </style>
+
+
+
+    <script>
+        function Printpage(){
+            print()
+        }
+    </script>

@@ -1,0 +1,226 @@
+{% include 'adheader.html' %}
+    <h1>ADD STAFF</h1>
+    <form action="" method="POST">
+        <div class="lg-main">
+    
+            <div class="lg-2nd">
+    <center>
+        {% if data['staff'] %}
+
+        <div>
+
+        
+            <h1 style="margin-top: 10px;color: black;" >Update Staff</h1>
+            <table class="table" style="width:450px;">
+            
+            <tr>
+                <th>Firstname</th>
+                <td><input type="text" required  class="form-control"value="{{ data['staff'][0]['Firstname'] }}"name="Firstname"></td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td><input type="text" required  class="form-control" value="{{ data['staff'][0]['Lastname'] }}"name="Lastname"></td>
+            </tr>
+            <tr>
+                <th>Phone Number</th>
+                <td><input type="text" required class="form-control"value="{{ data['staff'][0]['Phone_number'] }}"name="Phone_number" pattern="[0-9]{10}"></td>
+            </tr>
+            
+            <tr>
+                <th>House Name</th>
+                <td><input type="text" required class="form-control"value="{{ data['staff'][0]['House_name'] }}" name="House_name"></td>
+            </tr>
+            <tr>
+                <th>State</th>
+                <td><input type="text" required class="form-control" value="{{ data['staff'][0]['State'] }}"name="State"></td>
+            </tr>
+            <tr>
+                <th>District</th>
+                <td><input type="text" required class="form-control"value="{{ data['staff'][0]['District'] }}" name="District"></td>
+            </tr>
+            <tr>
+                <th>Pincode</th>
+                <td><input type="text" required class="form-control" value="{{ data['staff'][0]['Pincode'] }}"name="Pincode" pattern="[0-9]{6}"></td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td><input type="date" required class="form-control"value="{{ data['staff'][0]['Date'] }}" name="Date"></td>
+    
+            </tr> 
+            <!-- <tr>
+                <th>Email</th>
+                <td><input type="text"class="form-control" required value="{{ data['staff'][0]['Email'] }}" name="Email"></td>
+            </tr>
+            <th>Password</th>
+                <td><input type="password"class="form-control" required name="Password"></td>
+            </tr> -->
+
+           
+            <tr>
+                <span style="padding-left:30px;">
+                <td><input type="submit" value="Update" class="btn btn-success" name="update"></td></span>.
+            </tr>
+            
+    
+        </table>
+    
+    </div>
+
+{% else %}
+
+        <div>
+
+        
+        <h1 style="margin-top: 10px;color: black;" >Add Staff</h1>
+        <table class="table" style="width:450px;">
+        
+        <tr>
+            <th>Email</th>
+            <td><input type="text"class="form-control" required  name="Email"></td>
+        </tr>
+        <th>Password</th>
+            <td><input type="password"class="form-control" required  name="Password"></td>
+        </tr>
+        <tr>
+            <th>Firstname</th>
+            <td><input type="text" class="form-control" required name="Firstname"></td>
+        </tr>
+        <tr>
+            <th>Lastname</th>
+            <td><input type="text" class="form-control" required name="Lastname"></td>
+        </tr>
+        <tr>
+            <th>Phone Number</th>
+            <td><input type="text"class="form-control" required name="Phone_number"></td>
+        </tr>
+        
+        <tr>
+            <th>House Name</th>
+            <td><input type="text"class="form-control" required  name="House_name"></td>
+        </tr>
+        <tr>
+            <th>State</th>
+            <td><input type="text"class="form-control" required  name="State"></td>
+        </tr>
+        <tr>
+            <th>District</th>
+            <td><input type="text"class="form-control" required  name="District"></td>
+        </tr>
+        <tr>
+            <th>Pincode</th>
+            <td><input type="text"class="form-control" required  name="Pincode"></td>
+        </tr>
+        <tr>
+            <th>Date</th>
+            <td><input type="date"class="form-control" required  name="Date"></td>
+
+        </tr>
+
+
+       
+        <tr>
+            <span style="padding-left:30px;">
+            <td><input type="submit" value="Submit" class="btn btn-success" name="submit"></td></span>.
+        </tr>
+        
+
+    </table>
+
+</div>
+</form>
+{% endif %}
+
+      <br>
+      <h1 style="margin-top: 5px;color: black;" >View Staff</h1>
+    <table class="table table-striped">
+        <tr>
+            <th>Email</th>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>PhoneNo</th>
+            <th>Housename</th>
+            <th>State</th>
+            <th>District</th>
+            <th>Pincode</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Update</th>
+            <th>Action</th>
+            
+
+            <th></th>
+        </tr>
+        {% for r in data['view'] %}
+        <tr>
+            <td>{{r['username']}}</td>
+            <td>{{r['Firstname']}}</td>
+            <td>{{r['Lastname']}}</td>
+            <td>{{r['Phone_number']}}</td>
+            <td>{{r['House_name']}}</td>
+            <td>{{r['State']}}</td>
+            <td>{{r['District']}}</td>
+            <td>{{r['Pincode']}}</td>
+            <td>{{r['Date']}}</td>
+            <td>{{r['Status']}}</td>
+            <td><a class="btn btn-success" href="?action=update&sid={{ r['staff_id'] }}">update</a></td>  
+            {% if r['Status'] == 1 %}
+        <td><a href="?action=inactive&sid={{r['staff_id']}}"  class="btn btn-danger">Inactive</a></td>
+        {% else %}
+        <td><a href="?action=active&sid={{r['staff_id']}}"  class="btn btn-primary">Active</a></td>
+
+        {% endif %}
+            
+
+
+        </tr>
+        {% endfor %}
+        
+    </table>
+    </center>
+</div>
+</div>
+    </form>
+{
+<style>
+   *{
+        margin: 0px;
+        padding: 0px;
+      }
+      
+    .lg-main{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 200x;
+        margin-top: 50px;
+
+    }
+    h1{
+       text-align: center;
+       padding-top: 20px;
+       color:
+     #d20b0b00;
+     font-family:Cambria;
+    }
+    .lg-2nd{
+        margin-bottom:0px;
+        margin-top: 0px;
+        box-shadow: rgba(255, 255, 255, 0) 0px 0px 0px 0px;
+        border-radius: 45px;
+        height: 750px;
+        background-color: rgba(0, 0, 0, 0.09);
+    }
+    body{
+    background: white;
+    background-repeat: no-repeat;
+    background-position: bottom 0px right 0px;
+    background-size: cover;
+    height: 200vh;
+}
+header
+{
+    background:black;
+}
+
+
+</style>

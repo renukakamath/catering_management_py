@@ -1,0 +1,46 @@
+{% include 'cusheader.html' %}
+<div class="img" style="height: 100px;"></div>
+    <section class="w3l-courses py-5" id="courses">
+        <div class="container pb-lg-5 pb-md-4 pb-2">
+            <h3 class="title-style text-center">FOOD ITEMS</h3>
+            <div class="row justify-content-center">
+                {% for r in data['res'] %}
+                <div class="col-lg-4 col-md-6 item mt-5">
+                    <div class="card">
+                        <div class="card-header p-0 position-relative">
+                            <a href="customer_addtocart" class="zoom d-block">
+                                <img class="card-img-bottom d-block"
+                            </a>
+                            <div><img src="/{{ r['Image'] }}" height="400"width="400">
+                                <a href="cart?id={{r['item_id']}}" class="receipe blue">New</a>
+                                <a href="cart?id={{r['item_id']}}" class="receipe yellow ml-2">Add to Cart</a>
+                            </div>
+                        </div>
+                        <div class="card-body course-details">
+                            <div class="price-review d-flex justify-content-between mb-1align-items-center">
+                                <p> Rs.{{r['Price']}}</p>
+                                <ul class="rating-star">
+                                    <li><span class="fas fa-star"></span></li>
+                                    <li><span class="fas fa-star"></span></li>
+                                    <li><span class="fas fa-star"></span></li>
+                                    <li><span class="fas fa-star"></span></li>
+                                    <li><span class="fas fa-star-o"></span></li>
+                                </ul>
+                            </div>
+                            
+                            <p><td>{{r['Iname']}}</td> </p>
+                            <p><td>{{r['Name']}}</td> </p>
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+               
+                
+            </div>
+        </div>
+    </section>
+    
+{% include 'footer.html' %}
